@@ -90,7 +90,7 @@ function fetchUser() {
                 }
             });
 
-            xhr.open("POST", 'https://rem-official.ddns.net/rem-official/api/fetchUser/');
+            xhr.open("POST", 'https://leewp14.nsupdate.info/rem-official/api/fetchUser/');
             xhr.setRequestHeader("content-type", "application/json");
             xhr.setRequestHeader("cache-control", "no-cache");
 
