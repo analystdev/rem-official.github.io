@@ -1,6 +1,7 @@
 
 // Global Variables
 var currentElement;
+var userJSON;
 
 // onload
 function initSite() {
@@ -40,6 +41,10 @@ function loadContent(args) {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById('content-view').innerHTML = this.responseText;
+            // For About section
+            if (args == 'about') {
+                fetchUser();
+            }
         }
     }
     xhttp.open('GET', 'assets/docs/' + args + '.html', true);
@@ -56,6 +61,85 @@ function setInactive() {
     for (var i = 0; i < element.length; i++) {
         element[i].classList.remove('active');
     }
+}
+
+function fetchUser() {
+    // var data = JSON.stringify({
+    //     "user": [
+    //         "401648495515402240",
+    //         "283236977602592778",
+    //         "yeeeee"
+    //     ]
+    // });
+
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+
+    xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === 4) {
+            userJSON = JSON.parse(this.responseText);
+            var data = JSON.stringify(userJSON.user);
+
+            var xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+
+            xhr.addEventListener("readystatechange", function () {
+                if (this.readyState === 4) {
+                    var respond = JSON.parse(this.responseText);
+                    injectUser(respond);
+                }
+            });
+
+            xhr.open("POST", 'http://54.189.212.107/rem-official/api/fetchUser/');
+            xhr.setRequestHeader("content-type", "application/json");
+            xhr.setRequestHeader("cache-control", "no-cache");
+
+            xhr.send(data);
+        }
+    });
+
+    xhr.open("GET", "assets/docs/about/fetchUser.json");
+    xhr.setRequestHeader("content-type", "application/json");
+    xhr.setRequestHeader("cache-control", "no-cache");
+
+    xhr.send();
+
+    // var xhr = new XMLHttpRequest();
+    // xhr.withCredentials = true;
+
+    // xhr.addEventListener("readystatechange", function () {
+    //     if (this.readyState === 4) {
+    //         respond = JSON.parse(this.responseText);
+    //         injectUser(respond);
+    //     }
+    // });
+
+    // xhr.open("POST", "http://localhost/");
+    // xhr.setRequestHeader("content-type", "application/json");
+    // xhr.setRequestHeader("cache-control", "no-cache");
+
+    // xhr.send(data);
+}
+
+function injectUser(args) {
+    var coco = [];
+    for (i in userJSON.user) {
+        userid = args[i].id;
+        username = args[i].username;
+        useravatar = args[i].avatar;
+        coco.push(
+            '<div id="bot-owner-1" class="card card-2"><div class="card-header"><span class="icon icon-circle-right"></span><a class="card-text">' +
+            userJSON.title[i] +
+            '</a></div ><div class="card-content bot-owner"><img class="bot-owner-avatar" src="https://cdn.discordapp.com/avatars/' +
+            userid + '/' + useravatar +
+            '.png?size=512"><div class="bot-owner-info"><div class="bot-owner-name">@' +
+            username + '</div>' +
+            userJSON.desc[i] +
+            '</div></div></div>');
+    }
+    document.getElementById('userInject').innerHTML = coco.join('');
+    document.getElementById('userInject').style.display = 'flex';
+    document.getElementById('userInject').style.flexWrap = 'wrap';
 }
 
 // Call Page and Section according to URL Parameters
