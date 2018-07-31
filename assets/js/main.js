@@ -90,7 +90,7 @@ function fetchUser() {
                 }
             });
 
-            xhr.open("POST", 'https://54.189.212.107/rem-official/api/fetchUser/');
+            xhr.open("POST", 'null');
             xhr.setRequestHeader("content-type", "application/json");
             xhr.setRequestHeader("cache-control", "no-cache");
 
