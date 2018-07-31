@@ -94,7 +94,7 @@ function fetchUser() {
             xhr.setRequestHeader("content-type", "application/json");
             xhr.setRequestHeader("cache-control", "no-cache");
 
-            // xhr.send(data);
+            xhr.send(data);
         }
     });
 
