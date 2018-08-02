@@ -127,15 +127,51 @@ function injectUser(args) {
         userid = args[i].id;
         username = args[i].username;
         useravatar = args[i].avatar;
-        coco.push(
+        useravatarurl = 'https://cdn.discordapp.com/avatars/' + userid + '/' + useravatar;
+        string1 =
             '<div id="bot-owner-1" class="card card-2"><div class="card-header"><span class="icon icon-circle-right"></span><a class="card-text">' +
             userJSON.title[i] +
-            '</a></div ><div class="card-content bot-owner"><img class="bot-owner-avatar" src="https://cdn.discordapp.com/avatars/' +
-            userid + '/' + useravatar +
-            '.png?size=512"><div class="bot-owner-info"><div class="bot-owner-name">@' +
+            '</a></div ><div class="card-content bot-owner"><img class="bot-owner-avatar" src="';
+        string2 =
+            '?size=512"><div class="bot-owner-info"><div class="bot-owner-name">@' +
             username + '</div>' +
             userJSON.desc[i] +
-            '</div></div></div>');
+            '</div></div></div>';
+
+        isGIF = true;
+        try {
+            var xhr = new XMLHttpRequest();
+
+            xhr.addEventListener("readystatechange", function () {
+                if (this.status === 404) {
+                    throw 404;
+                }
+            });
+
+            xhr.open("GET", useravatarurl + '.gif', false);
+            xhr.setRequestHeader("cache-control", "no-cache");
+
+            xhr.send(data);
+        } catch (err) {
+            isGIF = false;
+        } finally {
+            if (!isGIF) {
+                avatarExt = '.png';
+            } else {
+                avatarExt = '.gif'
+            }
+            coco.push(string1 + useravatarurl + avatarExt + string2);
+        }
+
+        // coco.push(
+        //     '<div id="bot-owner-1" class="card card-2"><div class="card-header"><span class="icon icon-circle-right"></span><a class="card-text">' +
+        //     userJSON.title[i] +
+        //     '</a></div ><div class="card-content bot-owner"><img class="bot-owner-avatar" src="https://cdn.discordapp.com/avatars/' +
+        //     userid + '/' + useravatar +
+        //     '.png?size=512"><div class="bot-owner-info"><div class="bot-owner-name">@' +
+        //     username + '</div>' +
+        //     userJSON.desc[i] +
+        //     '</div></div></div>');
     }
     document.getElementById('userInject').innerHTML = coco.join('');
     document.getElementById('userInject').style.display = 'flex';
