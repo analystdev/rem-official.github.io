@@ -144,7 +144,10 @@ function injectUser(args) {
 
             xhr.addEventListener("readystatechange", function () {
                 if (this.status === 404) {
-                    throw 404;
+                    avatarExt = '.png';
+                    userPush(avatarExt);
+                }else{
+                    throw 'found';
                 }
             });
 
@@ -153,14 +156,12 @@ function injectUser(args) {
 
             xhr.send(data);
         } catch (err) {
-            isGIF = false;
-        } finally {
-            if (!isGIF) {
-                avatarExt = '.png';
-            } else {
-                avatarExt = '.gif'
-            }
-            coco.push(string1 + useravatarurl + avatarExt + string2);
+            avatarExt = '.gif';
+            userPush(avatarExt);
+        }
+        
+        function userPush(cond) {
+            coco.push(string1 + useravatarurl + cond + string2);
         }
 
         // coco.push(
