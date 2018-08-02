@@ -128,19 +128,55 @@ function injectUser(args) {
         username = args[i].username;
         useravatar = args[i].avatar;
         useravatarurl = 'https://cdn.discordapp.com/avatars/' + userid + '/' + useravatar;
+        // string1 =
+        //     '<div id="bot-owner-1" class="card card-2"><div class="card-header"><span class="icon icon-circle-right"></span><a class="card-text">' +
+        //     userJSON.title[i] +
+        //     '</a></div ><div class="card-content bot-owner"><img class="bot-owner-avatar" src="' +
+        //     useravatarurl +
+        //     '.gif?size=512" onerror="this.onerror=null;this.src=' + "'" +
+        //     useravatarurl +
+        //     ".png?size=512'" + '"><div class="bot-owner-info"><div class="bot-owner-name">@' +
+        //     username + '</div>' +
+        //     userJSON.desc[i] +
+        //     '</div></div></div>';
+
+        // coco.push(string1);
+
         string1 =
             '<div id="bot-owner-1" class="card card-2"><div class="card-header"><span class="icon icon-circle-right"></span><a class="card-text">' +
             userJSON.title[i] +
-            '</a></div ><div class="card-content bot-owner"><img class="bot-owner-avatar" src="' +
-            useravatarurl +
-            '.gif?size=512" onerror="this.onerror=null;this.src=' + "'" +
-            useravatarurl +
-            ".png?size=512'" + '"><div class="bot-owner-info"><div class="bot-owner-name">@' +
+            '</a></div ><div class="card-content bot-owner"><img class="bot-owner-avatar" src="';
+        string2 =
+            '?size=512"><div class="bot-owner-info"><div class="bot-owner-name">@' +
             username + '</div>' +
             userJSON.desc[i] +
             '</div></div></div>';
 
-        coco.push(string1);
+        isGIF = true;
+        try {
+            var xhr = new XMLHttpRequest();
+
+            xhr.addEventListener("readystatechange", function () {
+                if (this.status === 415 || this.status === 404) {
+                    avatarExt = '.png';
+                    userPush(avatarExt);
+                } else {
+                    throw 'found';
+                }
+            });
+
+            xhr.open("GET", useravatarurl + '.gif');
+            xhr.setRequestHeader("cache-control", "no-cache");
+
+            xhr.send(data);
+        } catch (err) {
+            avatarExt = '.gif';
+            userPush(avatarExt);
+        }
+
+        function userPush(cond) {
+            coco.push(string1 + useravatarurl + cond + string2);
+        }
 
     }
     document.getElementById('userInject').innerHTML = coco.join('');
