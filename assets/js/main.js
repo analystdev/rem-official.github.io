@@ -161,7 +161,8 @@ function injectUser(args) {
                     avatarExt = '.png';
                     userPush(avatarExt);
                 } else {
-                    throw 'found';
+                    avatarExt = '.gif';
+                    userPush(avatarExt);
                 }
             });
 
@@ -170,8 +171,7 @@ function injectUser(args) {
 
             xhr.send(data);
         } catch (err) {
-            avatarExt = '.gif';
-            userPush(avatarExt);
+            // null
         }
 
         function userPush(cond) {
