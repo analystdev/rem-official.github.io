@@ -152,7 +152,6 @@ function injectUser(args) {
             userJSON.desc[i] +
             '</div></div></div>';
 
-        isGIF = true;
         try {
             var xhr = new XMLHttpRequest();
 
