@@ -168,7 +168,7 @@ function injectUser(args) {
             xhr.open("GET", useravatarurl + '.gif');
             xhr.setRequestHeader("cache-control", "no-cache");
 
-            xhr.send(data);
+            xhr.send();
         } catch (err) {
             // null
         }
