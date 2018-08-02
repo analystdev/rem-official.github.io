@@ -144,6 +144,7 @@ function injectUser(args) {
 
     }
     document.getElementById('userInject').innerHTML = coco.join('');
+    document.getElementById('userInject').removeAttribute('style');
     document.getElementById('userInject').style.display = 'flex';
     document.getElementById('userInject').style.flexWrap = 'wrap';
 }
