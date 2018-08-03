@@ -94,8 +94,6 @@ function fetchUser() {
                 if (this.readyState === 4) {
                     var respond = JSON.parse(this.responseText);
                     injectUser(respond);
-                }else{
-                    document.getElementById('userInject').innerHTML = 'Construct failed :(';
                 }
             });
 
