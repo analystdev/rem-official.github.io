@@ -72,6 +72,13 @@ function fetchUser() {
     //     ]
     // });
 
+    document.getElementById('userInject')
+        .setAttribute(
+            'style',
+            'color: mediumvioletred;display: flex;justify-content: center;width: -webkit-fill-available;background: #f7cbffba;border-radius: 10px;padding: 40px;margin: 10px;border: 2px solid palevioletred;'
+        )
+    document.getElementById('userInject').innerHTML = 'Constructing Pylons...';
+
     var xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
 
@@ -87,6 +94,8 @@ function fetchUser() {
                 if (this.readyState === 4) {
                     var respond = JSON.parse(this.responseText);
                     injectUser(respond);
+                }else{
+                    document.getElementById('userInject').innerHTML = 'Construct failed :(';
                 }
             });
 
