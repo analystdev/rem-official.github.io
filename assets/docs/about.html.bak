@@ -105,6 +105,20 @@
         <div id="bot-owner-2" class="card card-2">
             <div class="card-header">
                 <span class="icon icon-circle-right"></span>
+                <a class="card-text">ADMIN</a>
+            </div>
+            <div class="card-content bot-owner">
+                <img class="bot-owner-avatar" src="https://cdn.discordapp.com/avatars/218824947655639040/9677cde4256ce15b560509e748c9fb15.png?size=512">
+                <div class="bot-owner-info">
+                    <div class="bot-owner-name">@Dr. Pupper</div>
+                    <div>Coke, the slave of the server</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="bot-owner-2" class="card card-2">
+            <div class="card-header">
+                <span class="icon icon-circle-right"></span>
                 <a class="card-text">MODERATOR</a>
             </div>
             <div class="card-content bot-owner">
@@ -156,22 +170,7 @@
                     <div>i am female #plot-twist</div>
                 </div>
             </div>
-        </div>
-        
-         <div id="bot-owner-2" class="card card-2">
-            <div class="card-header">
-                <span class="icon icon-circle-right"></span>
-                <a class="card-text">MODERATOR</a>
-            </div>
-            <div class="card-content bot-owner">
-                <img class="bot-owner-avatar" src="https://cdn.discordapp.com/avatars/218824947655639040/9677cde4256ce15b560509e748c9fb15.png?size=512">
-                <div class="bot-owner-info">
-                    <div class="bot-owner-name">@Dr. Pupper</div>
-                    <div>Coke, the slave of the server</div>
-                </div>
-            </div>
-        </div>
-        
+        </div> 
         <div id="bot-owner-2" class="card card-2">
            <div class="card-header">
                <span class="icon icon-circle-right"></span>
