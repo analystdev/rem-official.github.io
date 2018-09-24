@@ -99,6 +99,8 @@ body{
         position: absolute;
         font-size: 14px;
         right: 0;
+        display: none;
+        cursor: pointer;
     }
 
     #nav-login:hover{

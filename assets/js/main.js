@@ -2,6 +2,7 @@
 // Global Variables
 var currentElement;
 var userJSON;
+var dashboardURL = 'http://localhost/rem-official/dashboard';
 
 // onload
 function initSite() {
@@ -9,6 +10,7 @@ function initSite() {
         initContent('main');
     }
     setTimeout(hideSplash, 1500);
+    remDebug();
 }
 
 // Content Management
@@ -231,4 +233,17 @@ function getUrlParams(url) {
     }
 
     return obj;
+}
+
+// Open REM Dashboard
+function openDashboard() {
+    window.open(dashboardURL, '_self');
+}
+
+
+// DEBUG
+function remDebug() {
+    if(window.location.hostname == 'localhost' && window.location.port == 8000){
+        document.getElementById('nav-login').style.display = 'initial';
+    }
 }
