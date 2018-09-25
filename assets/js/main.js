@@ -9,6 +9,7 @@ function initSite() {
     if (!callContent('page')) {
         initContent('main');
     }
+    injectStats();
     setTimeout(hideSplash, 1500);
     remDebug();
 }
@@ -156,6 +157,31 @@ function injectUser(args) {
     document.getElementById('userInject').removeAttribute('style');
     document.getElementById('userInject').style.display = 'flex';
     document.getElementById('userInject').style.flexWrap = 'wrap';
+}
+
+function injectStats(){
+    var xhr = new XMLHttpRequest();
+
+    xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === 4) {
+            var response = JSON.parse(this.responseText);
+
+            if(response.server_count){
+                document.getElementById('nav-stats-server_count').innerHTML = response.server_count;
+                document.getElementById('nav-stats-server_count').style.display = 'inherit';
+            }
+
+            if(response.monthlyPoints){
+                document.getElementById('nav-stats-monthlyPoints').innerHTML = response.monthlyPoints;
+                document.getElementById('nav-stats-monthlyPoints').style.display = 'inherit';
+            }
+
+        }
+    });
+
+    xhr.open("GET", "https://discordbots.org/api/bots/413385786344472576");
+
+    xhr.send();
 }
 
 // Call Page and Section according to URL Parameters

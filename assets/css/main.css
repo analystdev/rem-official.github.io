@@ -67,10 +67,12 @@ body{
     }
 
     .nav-button{
-        border: 1px solid black;
+        /* border: 1px solid black; */
         border-radius: 3px;
         padding: 4px 12px;
+        padding: 1px 12px;
         font-size: 15px;
+        display: inline-block;
     }
 
     .nav-button:hover{
@@ -79,17 +81,24 @@ body{
 
     .nav-button-primary{
         background: purple;
-        border-color: purple;
+        /* border-color: purple; */
         color: white;
     }
 
     .nav-button-secondary{
-        border-color: purple;
+        /* border-color: purple; */
         color: purple;
     }
     
     #nav-vote{
         padding: 4px 14px;
+        margin-left: 10px;
+    }
+
+    #nav-stats-server_count, #nav-stats-monthlyPoints {
+        opacity: 0.5;
+        display: none;
+        padding-left: 5px;
     }
 
     /* Login */

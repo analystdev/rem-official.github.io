@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://rem-official.github.io/sitemap.xml
+Sitemap: https://rembotofficial.com/sitemap.xml
