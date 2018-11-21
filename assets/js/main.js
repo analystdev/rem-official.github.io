@@ -46,7 +46,7 @@ function loadContent(args) {
             document.getElementById('content-view').innerHTML = this.responseText;
             // For About section
             if (args == 'about') {
-                fetchUser();
+                // fetchUser();
             }
         }
     }
@@ -218,6 +218,7 @@ function scrollIntoViewz(args) {
 function hideSplash() {
     document.getElementById('splash').style.pointerEvents = 'none';
     document.getElementById('splash').style.opacity = '0';
+    setTimeout(function () {document.getElementById('splash').style.display = 'none'}, 1000);
 }
 
 // Get URL Parameters
