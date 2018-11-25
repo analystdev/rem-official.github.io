@@ -36,6 +36,8 @@ function initContent(args) {
                 currentElement = args;
             }
         }
+    }else{
+        scrollIntoViewz('placeholder');
     }
 }
 
@@ -44,6 +46,7 @@ function loadContent(args) {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById('content-view').innerHTML = this.responseText;
+            scrollIntoViewz('placeholder');
             // For About section
             if (args == 'about') {
                 // fetchUser();
